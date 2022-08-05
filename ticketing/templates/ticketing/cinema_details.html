@@ -1,0 +1,71 @@
+{% extends "ticketing/base_page.html" %}
+{% load static %}
+
+{% block title %}
+{{ cinema.name }}
+{% endblock %}
+
+{% block toolbar_title %}
+    <i class="fas fa-film"></i>
+    {{ cinema.name }}
+{% endblock %}
+
+
+{% block main_content %}
+<div class="row py-3">
+    <div class="col-8 item-details">
+        <div class="row px-3">
+            <div class="col-3">
+                <small class="text-muted">
+                    شهر:
+                </small>
+            </div>
+            <div class="col-9">
+                {{ cinema.city }}
+            </div>
+            <div class="w-100 my-1"></div>
+            <div class="col-3">
+                <small class="text-muted">
+                    گنجایش:
+                </small>
+            </div>
+            <div class="col-9">
+                {{ cinema.capacity }}
+            </div>
+            <div class="w-100 my-1"></div>
+            <div class="col-3">
+                <small class="text-muted">
+                    تلفن:
+                </small>
+            </div>
+            {% if cinema.phone == None %}
+            <div class="col-9">
+                <small class="text-muted">
+                    تلفنی برای نمایش نیست
+                </small>
+            </div>
+            {% else %}
+            <div class="col-9">
+                {{ cinema.phone }}
+            </div>
+            {% endif %}
+            <div class="w-100 my-1"></div>
+            <div class="col-3">
+                <small class="text-muted">
+                    آدرس:
+                </small>
+            </div>
+            <div class="col-9 item-text-box">
+                {{ cinema.address}}
+            </div>
+        </div>
+    </div>
+    <div class="col-4 text-center">
+        {% if cinema.image %}
+            <img src="{{ cinema.image.url }}" alt="{{ cinema.name }}" class="item-image">
+        {% else %}
+            <i class="far fa-10x fa-building text-muted"></i>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

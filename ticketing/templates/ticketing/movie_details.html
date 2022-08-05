@@ -1,0 +1,59 @@
+{% extends "ticketing/base_page.html" %}
+{% load static %}
+
+{% block title %}
+{{ movie.name }}
+{% endblock %}
+
+{% block toolbar_title %}
+    <i class="fas fa-film"></i>
+        {{ movie.name }}
+{% endblock %}
+
+
+{% block main_content %}
+<div class="row py-3">
+    <div class="col-8 item-details">
+        <div class="row px-3">
+            <div class="col-3">
+                <small class="text-muted">
+                    کارگردان:
+                </small>
+            </div>
+            <div class="col-9">
+                {{ movie.director }}
+            </div>
+            <div class="w-100 my-1"></div>
+            <div class="col-3">
+                <small class="text-muted">
+                    محصول سال:
+                </small>
+            </div>
+            <div class="col-9">
+                {{ movie.year }}
+            </div>
+            <div class="w-100 my-1"></div>
+            <div class="col-3">
+                <small class="text-muted">
+                    مدت زمان:
+                </small>
+            </div>
+            <div class="col-9">
+                {{ movie.length }} دقیقه
+            </div>
+            <div class="w-100 my-1"></div>
+            <div class="col-3">
+                <small class="text-muted">
+                    داستان فیلم:
+                </small>
+            </div>
+            <div class="col-9 item-text-box">
+                {{ movie.description}}
+            </div>
+        </div>
+    </div>
+    <div class="col-4 text-center">
+        <img src="{{ movie.poster.url }}" alt="{{ movie.name }}" class="item-image">
+    </div>
+</div>
+{% endblock %}

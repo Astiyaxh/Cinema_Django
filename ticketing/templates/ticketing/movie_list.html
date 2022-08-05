@@ -1,0 +1,38 @@
+{% extends "ticketing/base_page.html" %}
+{% load static %}
+
+{% block title %}
+فهرست فیلم ها
+{% endblock %}
+
+{% block toolbar_title %}
+فهرست فیلم ها
+{% endblock %}
+
+{% block main_content %}
+<div class="row ">
+    <div class="col py-3">
+        {% if movies %}
+            {% include "ticketing/_ad.html" with company="Intel" color="primary" %}
+        <ul class="item-list">
+            {% for movie in movies %}
+                <li>
+                    <a href="{% url 'ticketing:movie_details' movie_id=movie.id %}">
+                    <i class="fas fa-film"></i>
+                    {{ movie }} 
+                    <small class="text-muted">
+                        ({{movie.director}})
+                    </small>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+        {% include "ticketing/_ad.html" with company="Intel" color="secondary" %}
+    {% else %}
+        <div class="alert alert-danger align-items-center text-center">
+            هیچ فیلمی برای نمایش نیست
+        </div>
+    {% endif %}
+    </div>
+</div>
+{% endblock %}
