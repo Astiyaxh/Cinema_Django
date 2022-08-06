@@ -62,7 +62,7 @@
                 {{ profile.get_balance_display }}
             </div>
             <div class="col-4 text-left">
-                <a class="btn btn-xs btn-success my-1" href="{% url 'accounts:payment_create' %}">
+                <a class="btn btn-xs btn-success my-1" href="#">
                     <i class="fas fa-plus"></i>
                     افزایش اعتبار
                 </a>
@@ -84,7 +84,7 @@
         <img class="profile-image" src="{{ profile.profile_image.url }}" alt="{{ profile }}">
         {% endif %}
         <div class="profile-buttons mt-4">
-            <a class="btn btn-secondary" href="{% url " accounts:profile_edit" %}">
+            <a class="btn btn-secondary" href="#">
                 <i class="fas fa-edit"></i>
                 ویرایش نمایه
             </a>
