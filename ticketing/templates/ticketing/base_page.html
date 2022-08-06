@@ -24,28 +24,54 @@
             </div>
         </div>
 
-        <div class="row align-items-center" id="toolbar">
-            <div class="col-5">
-                <h3>
+        <div class="row align-items-center py-2" id="toolbar">
+            <div class="col-3">
+                <h5 class="px-1">
                     {% block toolbar_title %} {% endblock %}
-                </h3>
+                </h5>
             </div>
             {% block toolbar_buttons %}
-            <div class="col text-left">
+            <div class="col-9 text-left">
                 <div class="col text-center">
                     <a class="btn btn-light py-1 px-2" href="{% url 'ticketing:movie_list' %}"> <i
                             class="fas fa-film"></i> فهرست فیلم ها
                     </a>
-                    <a class="btn btn-warning py-1 px-2" href="{% url 'ticketing:cinema_list' %}"><i
+                    <a class="btn btn-light py-1 px-2" href="{% url 'ticketing:cinema_list' %}"><i
                             class="fas fa-building"></i> فهرست سینماها
                     </a>
                     <a class="btn btn-success py-1 px-2" href="{% url 'ticketing:showtime_list' %}">
                         <i class="fas fa-ticket-alt"></i>
                         خرید بلیت
                     </a>
+
+                    {% if user.is_authenticated %}
+                    <div class="dropdown">
+                        <a href="#" class="btn btn-primary dropdown-toggle py-1 px-2" id="user-button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user"></i>
+                            {{ user.get_full_name }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="user-button">
+                            <a href="#" class="dropdown-item">
+                                <i class="far fa-address-card"></i>
+                                نمایه کاربری
+                            </a>
+                            <a href="{% url 'accounts:logout' %}" class="dropdown-item">
+                                <i class="fas fa-sign-out-alt"></i>
+                                خروج
+                            </a>
+                        </div>
+                    </div>
+                    {% else %}
+                    <a href="{% url 'accounts:login' %}" class="btn btn-primary py-1 px-3 mr-3">
+                        <i class="fas fa-sign-in-alt"></i>
+                        ورود
+                    </a>
+
+                    {% endif %}
+                    {% endblock %}
                 </div>
             </div>
-            {% endblock %}
         </div>
 
         {% block main_content %} {% endblock %}

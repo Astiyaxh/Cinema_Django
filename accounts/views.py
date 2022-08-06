@@ -14,6 +14,8 @@ def login_view(request):
         if user is not None:
             # Successful login
             login(request, user)
+            if request.GET.get('next'):
+                return HttpResponseRedirect(request.GET.get('next'))
             return HttpResponseRedirect(reverse('ticketing:showtime_list'))
         else:
             # undefined user or wrong password

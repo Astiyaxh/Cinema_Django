@@ -1,6 +1,8 @@
-from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from .models import Movie, Cinema, ShowTime
+from django.urls import reverse
 # from ticketing.models import Movie
 # Create your views here.
 
@@ -38,12 +40,10 @@ def cinema_details(request, cinema_id):
     return render(request, 'ticketing/cinema_details.html', context)
 
 
+@login_required
 def showtime_list(request):
-    if request.user.is_authenticated and request.user.is_active:
-        showtimes = ShowTime.objects.all().order_by('start_time')
-        context = {
-            'showtimes': showtimes
-        }
-        return render(request, 'ticketing/showtime_list.html', context)
-    else:
-        return render(request, 'accounts/login.html')
+    showtimes = ShowTime.objects.all().order_by('start_time')
+    context = {
+        'showtimes': showtimes
+    }
+    return render(request, 'ticketing/showtime_list.html', context)
